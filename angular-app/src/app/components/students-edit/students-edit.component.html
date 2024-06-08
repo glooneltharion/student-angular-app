@@ -1,18 +1,19 @@
 <form *ngIf="student">
     <h2>Editing #{{student.id}} <i>{{student.name}}</i></h2>
-  
+    
     <div>
       <label for="name">Name and surname:</label>
-      <input type="text" id="name" [(ngModel)]="student.name">
+      <input type="text" id="name" name="name" [(ngModel)]="student.name">
     </div>
-  
+    
     <div>
       <label for="email">E-mail address:</label>
-      <input type="email" id="email" [(ngModel)]="student.email">
+      <input type="email" id="email" name="email" [(ngModel)]="student.email">
     </div>
-  
+    
     <div>
       <button (click)="goBack()" class="button">Cancel</button>
       <button (click)="save()" class="button button-green">Save</button>
     </div>
-</form>
+  </form>
+  

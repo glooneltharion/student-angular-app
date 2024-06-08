@@ -4,6 +4,7 @@ import { StudentService } from '../../services/student.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 
 
@@ -41,12 +42,26 @@ export class StudentEditComponent implements OnInit {
   }
 
   goBack(): void {
-    window.history.back();
+    this.location.back();
   }
-
+  
   save(): void {
-    // Saves the data and redirects to the previous view
+    if (!this.student) {
+      console.error("Student data is not available.");
+      return;
+    }
+  
     this.studentService.updateStudent(this.student)
-      .subscribe(() => this.goBack());
+      .subscribe(
+        () => {
+          console.log("Student updated successfully.");
+          this.goBack();
+        },
+        error => {
+          console.error("Error occurred while updating student:", error);
+          // Handle error, e.g., show an error message to the user
+        }
+      );
   }
+  
 }
